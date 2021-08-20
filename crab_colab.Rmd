@@ -1,6 +1,6 @@
 ---
 title: "Untitled"
-author: "Allie Cole"
+author: "Allie Cole and Scout Leonard"
 date: "8/20/2021"
 output: html_document
 ---
@@ -10,11 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
 library(janitor)
+library(kableExtra)
 ```
 
 ```{r, echo = FALSE}
 crab_data <- read_csv(here("data", "HTL-MAR-FiddlerCrabBodySize.csv"))
 ```
+
 ```{r, fig.alt = "A jitterplot of Crab Carapace lengths across latitudes shows greater widths at greater latitudes", echo = FALSE}
 ggplot(data = crab_data, aes(x = Latitude, y = carapace_width)) +
   geom_jitter() +
@@ -25,3 +27,31 @@ ggplot(data = crab_data, aes(x = Latitude, y = carapace_width)) +
 
 
 Crab carapace widths. 
+
+
+```{r, echo = FALSE}
+crab_subset <- crab_data %>% 
+  group_by(Site) %>% 
+  summarise(mean_width = round(mean(carapace_width), 2), 
+            sd_width = round(sd(carapace_width), 2), 
+            ss_width = n())
+
+
+crab_table <- crab_subset %>% 
+  kable(col.names = c("Site", "Mean Width", "Standard Devation Width", "Sample Size")) %>% 
+  kable_classic()
+
+
+
+crab_table
+```
+
+
+
+
+
+
+
+
+
+
