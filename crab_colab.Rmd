@@ -1,0 +1,18 @@
+---
+title: "Untitled"
+author: "Allie Cole"
+date: "8/20/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+```{r}
+crab_data <- read_csv(here("data", "HTL-MAR-FiddlerCrabBodySize.csv"))
+```
+
