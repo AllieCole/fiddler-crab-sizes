@@ -11,6 +11,7 @@ library(tidyverse)
 library(here)
 library(janitor)
 library(kableExtra)
+library(ggrepel)
 ```
 
 ```{r, echo = FALSE}
@@ -46,8 +47,18 @@ crab_table <- crab_subset %>%
 crab_table
 ```
 
+```{r, alt.text = "A scatterplot of mean annual water temperatures with mean crab carapace widths shows two clusters of points: one with lower water temperatures and larger carapace widths, and another with high water temperatures and lower carapace widths.", echo = FALSE}
+crab_subset_2 <- crab_data %>% 
+  group_by(Site) %>% 
+  summarize(mean_carapace_width =(mean(carapace_width)),
+            MATW = mean(MATW))
 
+ggplot(data = crab_subset_2, aes(x = MATW, y = mean_carapace_width)) +
+  geom_point(aes(color = Site), show.legend = FALSE) +
+  geom_text_repel(aes(label = Site))
+```
 
+A scatterplot of mean annual water temperatures and mean carapace widths. 
 
 
 
