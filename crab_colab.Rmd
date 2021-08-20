@@ -5,14 +5,23 @@ date: "8/20/2021"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
 library(janitor)
 ```
 
-```{r}
+```{r, echo = FALSE}
 crab_data <- read_csv(here("data", "HTL-MAR-FiddlerCrabBodySize.csv"))
 ```
+```{r, fig.alt = "A jitterplot of Crab Carapace lengths across latitudes shows greater widths at greater latitudes", echo = FALSE}
+ggplot(data = crab_data, aes(x = Latitude, y = carapace_width)) +
+  geom_jitter() +
+  labs(title = "Crab Carapace Widths by Latitude",
+       x = "Latitude",
+       y = "Carapace Widths (mm)")
+```
 
+
+Crab carapace widths. 
