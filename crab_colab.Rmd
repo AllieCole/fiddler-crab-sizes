@@ -5,7 +5,7 @@ date: "8/20/2021"
 output: html_document
 ---
 
-```{r setup, include=FALSE, echo = FALSE}
+```{r setup, include = FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
@@ -13,7 +13,7 @@ library(janitor)
 library(kableExtra)
 ```
 
-```{r, echo = FALSE}
+```{r, include = FALSE, echo = FALSE}
 crab_data <- read_csv(here("data", "HTL-MAR-FiddlerCrabBodySize.csv"))
 ```
 
